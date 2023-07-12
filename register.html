@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
+  <title>Register Page</title>
   <style>
     /* CSS styles */
     body {
@@ -41,7 +41,7 @@
     input[type="submit"] {
       width: 100%;
       padding: 10px;
-      background-color: #ff0c0c;
+      background-color: #ff1919;
       color: #fff;
       border: none;
       border-radius: 3px;
@@ -50,20 +50,12 @@
     input[type="submit"]:hover {
       background-color: #45a049;
     }
-    .register-link {
-      text-align: center;
-      margin-top: 10px;
-    }
-    .register-link a {
-      color: #333;
-      text-decoration: none;
-    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>YouTube Login</h2>
-    <form id="loginForm">
+    <h2>Register</h2>
+    <form id="registerForm">
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" required>
@@ -72,30 +64,27 @@
         <label for="password">Password</label>
         <input type="password" id="password" required>
       </div>
-      <input type="submit" value="Login">
+      <input type="submit" value="Register">
     </form>
-    <div class="register-link">
-      Don't have an account? <a href="register.html">Register</a>
-    </div>
   </div>
 
   <script>
-    // JavaScript code for login
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
+    // JavaScript code for registration
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
       event.preventDefault();
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
 
-      // Retrieve stored registration data
-      const storedData = JSON.parse(localStorage.getItem(username));
+      // Store registration data locally
+      const userData = {
+        username: username,
+        password: password
+      };
+      localStorage.setItem(username, JSON.stringify(userData));
 
-      // Check if stored data exists and the password matches
-      if (storedData && storedData.password === password) {
-        alert('Login successful!');
-        window.location.href = 'youtube.html'; // Redirect to the main website
-      } else {
-        alert('Invalid username or password. Please try again.');
-      }
+      // Here you can handle additional registration logic if needed
+      alert('Registration successful!');
+      window.location.href = 'login.html'; // Redirect to the login page
     });
   </script>
 </body>
